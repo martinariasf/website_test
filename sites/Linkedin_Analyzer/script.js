@@ -1,4 +1,4 @@
-const N8N_WEBHOOK_URL = 'https://your-n8n-instance.com/webhook/screenshot-to-link';
+const N8N_WEBHOOK_URL = 'https://martinariasfornara.app.n8n.cloud/webhook/linkedin';
 
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
