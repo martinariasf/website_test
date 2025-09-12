@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mattin Hormozi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .competence-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .competence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .competence-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .competence-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .competence-card p {
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        .skills-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .skills-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 5px;
+            transition: width 2s ease;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .competences-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mattin Hormozi</h1>
+            <p>Professional Working Competences</p>
+        </div>
+
+        <div class="competences-grid">
+            <div class="competence-card">
+                <div class="competence-icon">💼</div>
+                <h3>Leadership & Management</h3>
+                <p>Experienced in leading teams, making strategic decisions, and driving organizational growth through effective management practices.</p>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-icon">🤝</div>
+                <h3>Communication & Collaboration</h3>
+                <p>Strong interpersonal skills with the ability to facilitate clear communication across all levels of an organization.</p>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-icon">📊</div>
+                <h3>Analytical Thinking</h3>
+                <p>Data-driven approach to problem-solving with expertise in analyzing complex situations and developing innovative solutions.</p>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-icon">🎯</div>
+                <h3>Project Management</h3>
+                <p>Proven track record in managing multiple projects simultaneously while ensuring timely delivery and quality outcomes.</p>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-icon">⚡</div>
+                <h3>Adaptability</h3>
+                <p>Quick to adapt to changing environments and new challenges while maintaining high performance standards.</p>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-icon">🔍</div>
+                <h3>Strategic Planning</h3>
+                <p>Skilled in developing long-term strategies and implementing tactical plans to achieve business objectives.</p>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <h2>Core Skills Proficiency</h2>
+            
+            <div class="skill-item">
+                <div class="skill-name">Business Development</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-name">Team Leadership</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-name">Strategic Thinking</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 88%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-name">Problem Solving</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 92%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-name">Negotiation</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Evomotiv GmbH - Professional Competence Portfolio</p>
+        </div>
+    </div>
+
+    <script>
+        // Animate skill bars on page load
+        window.addEventListener('load', function() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
