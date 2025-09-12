@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilar Arias Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f2ef;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0077b5, #005885);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #0077b5;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #e1e9ee;
+            padding-bottom: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #0077b5;
+            font-size: 1.1em;
+        }
+
+        .recent-posts {
+            grid-column: 1 / -1;
+        }
+
+        .post-item {
+            background: #f8f9fa;
+            border-left: 4px solid #0077b5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .post-date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .post-content {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .engagement-metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0077b5;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .topics-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topic-tag {
+            background: #e1f5fe;
+            color: #0277bd;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pilar Arias</h1>
+            <p>Creative Business Strategist | Transformo autoempleados en empresarios que viven (y venden) mejor</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Profile Overview</h3>
+                <div class="stat-item">
+                    <span>Position</span>
+                    <span class="stat-value">Creative Business Strategist</span>
+                </div>
+                <div class="stat-item">
+                    <span>Industry</span>
+                    <span class="stat-value">Business Consulting</span>
+                </div>
+                <div class="stat-item">
+                    <span>Location</span>
+                    <span class="stat-value">Uruguay</span>
+                </div>
+                <div class="stat-item">
+                    <span>Language</span>
+                    <span class="stat-value">Spanish</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Content Performance</h3>
+                <div class="engagement-metrics">
+                    <div class="metric">
+                        <span class="metric-number">15+</span>
+                        <span class="metric-label">Posts</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">50+</span>
+                        <span class="metric-label">Likes</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">25+</span>
+                        <span class="metric-label">Comments</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">10+</span>
+                        <span class="metric-label">Reposts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Key Topics</h3>
+                <div class="topics-list">
+                    <span class="topic-tag">#Estrategia</span>
+                    <span class="topic-tag">#Paciencia</span>
+                    <span class="topic-tag">#MentalidadGanadora</span>
+                    <span class="topic-tag">#Crecimiento</span>
+                    <span class="topic-tag">#Negocios</span>
+                    <span class="topic-tag">#Marketing</span>
+                    <span class="topic-tag">#Resiliencia</span>
+                    <span class="topic-tag">#Liderazgo</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Activity Period</h3>
+                <div class="stat-item">
+                    <span>Most Recent Post</span>
+                    <span class="stat-value">1 day ago</span>
+                </div>
+                <div class="stat-item">
+                    <span>Posting Frequency</span>
+                    <span class="stat-value">Regular</span>
+                </div>
+                <div class="stat-item">
+                    <span>Peak Activity</span>
+                    <span class="stat-value">Last 2 months</span>
+                </div>
+                <div class="stat-item">
+                    <span
