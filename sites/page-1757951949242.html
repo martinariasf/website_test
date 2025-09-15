@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Number Display</title>
+    <link rel="stylesheet" href="utilities/evo_styles.css">
+</head>
+<body>
+    <div class="hero section-gradient">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="hero-title text-white fade-in">Dynamic Number Display</h1>
+                <p class="hero-subtitle text-white fade-in">Showcasing the number 355 with interactive animations</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section section-white">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="mb-8 text-orange">THE NUMBER</h2>
+                <div class="number-display">
+                    <div id="dynamicNumber" class="number-counter">0</div>
+                </div>
+                <p class="lead mt-6">Watch as the number dynamically counts up to 355!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-gray">
+        <div class="container">
+            <div class="grid grid-cols-3 text-center">
+                <div class="card card-shadow card-orange">
+                    <div class="card-body">
+                        <h3 class="text-orange">Animated</h3>
+                        <div class="animated-number pulse">355</div>
+                        <p>Continuously pulsing animation</p>
+                    </div>
+                </div>
+                <div class="card card-shadow card-blue">
+                    <div class="card-body">
+                        <h3 class="text-blue">Rotating</h3>
+                        <div class="rotating-number">355</div>
+                        <p>Smooth rotation effect</p>
+                    </div>
+                </div>
+                <div class="card card-shadow">
+                    <div class="card-body">
+                        <h3 class="text-dark">Bouncing</h3>
+                        <div class="bouncing-number bounce">355</div>
+                        <p>Fun bouncing motion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-blue">
+        <div class="container">
+            <div class="text-center text-white">
+                <h2 class="text-white mb-6">Interactive Controls</h2>
+                <div class="flex justify-center gap-4 mb-8">
+                    <button class="btn btn-primary" onclick="resetCounter()">Reset Counter</button>
+                    <button class="btn btn-outline" onclick="fastCount()">Fast Count</button>
+                    <button class="btn btn-ghost text-white" onclick="toggleAnimations()">Toggle Animations</button>
+                </div>
+                <div class="display-number-large">
+                    <span id="displayNumber">355</span>
+                </div>
+                <p class="mt-4">Current display value</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="text-orange mb-6">Number Facts</h2>
+                <div class="grid grid-cols-2">
+                    <div class="card card-bordered">
+                        <div class="card-body">
+                            <h4 class="text-blue">Mathematical Property</h4>
+                            <p>355 is a semiprime number (5 × 71)</p>
+                            <div class="number-highlight">355 = 5 × 71</div>
+                        </div>
+                    </div>
+                    <div class="card card-bordered">
+                        <div class="card-body">
+                            <h4 class="text-blue">Pi Approximation</h4>
+                            <p>355/113 is an excellent approximation of π</p>
+                            <div class="number-highlight">π ≈ 355/113</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                <div class="mb-8">
+                    <img src="utilities/evo_logo.png" alt="EVO Solutions Logo" style="width: 200px; height: auto; background-color: white; padding: 10px; border-radius: 8px;">
+                </div>
+                <p>&copy; 2024 Dynamic Number Display. Powered by EVO Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .number-display {
+            background: linear-gradient(135deg, var(--evo-orange), var(--evo-blue));
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            margin: var(--space-8) auto;
+            max-width: 400px;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .number-counter {
+            font-size: 6rem;
+            font-weight: var(--font-bold);
+            color: var(--pure-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1;
+        }
+
+        .animated-number,
+        .rotating-number,
+        .bouncing-number {
+            font-size: 3rem;
+            font-weight: var(--font-bold);
+            color: var(--evo-orange);
+            margin: var(--space-4) 0;
+        }
+
+        .rotating-number {
+            animation: rotate 3s linear infinite;
+        }
+
+        .display-number-large {
+            font-size: 8rem;
+            font-weight: var(--font-bold);
+            color: var(--pure-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: var(--space-6) 0;
+        }
+
+        .number-highlight {
+            font-size: 1.5rem;
+            font-weight: var(--font-bold);
+            color: var(--evo-orange);
+            background-color: var(--light-gray);
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-2);
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .count-animation {
+            animation: countUp 0.1s ease-out;
+        }
+
+        .animations-paused * {
+            animation-play-state: paused !important;
+        }
+    </style>
+
+    <script>
+        let currentNumber = 0;
+        let animationsPaused = false;
+        
+        function animateCounter() {
+            const counter = document.getElementById('dynamicNumber');
+            const target = 355;
+            const increment = Math.ceil(target / 100);
+            
+            const timer = setInterval(() => {
+                currentNumber += increment;
+                if (currentNumber >= target) {
+                    currentNumber = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = currentNumber;
+                counter.classList.add('count-animation');
+                setTimeout(() => counter.classList.remove('count-animation'), 100);
+            }, 50);
+        }
+        
+        function resetCounter() {
+            currentNumber = 0;
+            document.getElementById('dynamicNumber').textContent = '0';
+            document.getElementById('displayNumber').textContent = '355';
+            setTimeout(animateCounter, 500);
+        }
+        
+        function fastCount() {
+            const counter = document.getElementById('dynamicNumber');
+            const display = document.getElementById('displayNumber');
+            let fastNumber = 0;
+            
+            const fastTimer = setInterval(() => {
+                fastNumber += 25;
+                if (fastNumber >= 355) {
+                    fastNumber = 355;
+                    clearInterval(fastTimer);
+                }
+                counter.textContent = fastNumber;
+                display.textContent = fastNumber;
+                counter.classList.add('count-animation');
+                setTimeout(() => counter.classList.remove('count-animation'), 50);
+            }, 20);
+        }
+        
+        function toggleAnimations() {
+            animationsPaused = !animationsPaused;
+            const body = document.body;
+            if (animationsPaused) {
+                body.classList.add('animations-paused');
+            } else {
+                body.classList.remove('animations-paused');
+            }
+        }
+        
+        // Start the counter animation when page loads
+        window.addEventListener('load', () => {
+            setTimeout(animateCounter, 1000);
+        });
+        
+        // Add random number updates every 5 seconds
+        setInterval(() => {
+            const display = document.getElementById('displayNumber');
+            const randomVariation = Math.floor(Math.random() * 10) - 5;
+            const newValue = Math.max(350, Math.min(360, 355 + randomVariation));
+            display.textContent = newValue;
+            
+            setTimeout(() => {
+                display.textContent = '355';
+            }, 1000);
+        }, 5000);
+        
+        // Add hover effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
