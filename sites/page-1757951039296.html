@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVO App Builder</title>
+    <link rel="stylesheet" href="utilities/evo_styles.css">
+</head>
+<body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-container">
+                <div class="navbar-brand">EVO Solutions</div>
+                <ul class="navbar-menu">
+                    <li><a href="#benefits" class="navbar-link">Benefits</a></li>
+                    <li><a href="#demo" class="navbar-link">Live Demo</a></li>
+                    <li><a href="#features" class="navbar-link">Features</a></li>
+                    <li><a href="#roi" class="navbar-link">ROI Calculator</a></li>
+                    <li><a href="#contact" class="navbar-link">Get Started</a></li>
+                </ul>
+                <button class="navbar-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero section-gradient">
+            <div class="container">
+                <div class="text-center">
+                    <h1 class="hero-title">Build Apps at Lightning Speed</h1>
+                    <p class="hero-subtitle">Transform your business ideas into powerful applications in minutes, not months</p>
+                    <div class="mt-8">
+                        <a href="#demo" class="btn btn-primary btn-xl">See Live Demo</a>
+                        <a href="#roi" class="btn btn-outline btn-xl">Calculate ROI</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-time Statistics -->
+        <section class="section section-white">
+            <div class="container">
+                <div class="grid grid-cols-4 text-center">
+                    <div class="card card-shadow">
+                        <div class="card-body">
+                            <h3 class="text-orange" id="apps-created">1,247</h3>
+                            <p class="text-gray">Apps Created</p>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-body">
+                            <h3 class="text-blue" id="time-saved">15,680</h3>
+                            <p class="text-gray">Hours Saved</p>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-body">
+                            <h3 class="text-orange" id="cost-reduction">$2.3M</h3>
+                            <p class="text-gray">Development Costs Saved</p>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-body">
+                            <h3 class="text-blue" id="satisfaction">98.2%</h3>
+                            <p class="text-gray">Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Benefits -->
+        <section id="benefits" class="section section-gray">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <h2>Why EVO App Builder Changes Everything</h2>
+                    <p class="lead">Discover the competitive advantages that put your organization ahead</p>
+                </div>
+                
+                <div class="grid grid-cols-3">
+                    <div class="card card-shadow card-orange fade-in">
+                        <div class="card-body">
+                            <div class="text-center mb-6">
+                                <div style="font-size: 3rem; color: var(--evo-orange);">⚡</div>
+                            </div>
+                            <h3>90% Faster Development</h3>
+                            <p>Build complex applications in hours instead of months. Our visual drag-and-drop interface eliminates coding bottlenecks.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                            <small class="text-gray">Traditional: 6 months → EVO: 2 weeks</small>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-blue slide-in-left">
+                        <div class="card-body">
+                            <div class="text-center mb-6">
+                                <div style="font-size: 3rem; color: var(--evo-blue);">💰</div>
+                            </div>
+                            <h3>75% Cost Reduction</h3>
+                            <p>Eliminate expensive external development teams. Empower your internal team to create professional apps.</p>
+                            <div class="progress">
+                                <div class="progress-bar blue" style="width: 75%"></div>
+                            </div>
+                            <small class="text-gray">Average savings: $150,000 per project</small>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-orange slide-in-right">
+                        <div class="card-body">
+                            <div class="text-center mb-6">
+                                <div style="font-size: 3rem; color: var(--evo-orange);">🎯</div>
+                            </div>
+                            <h3>Perfect Market Fit</h3>
+                            <p>Build exactly what your business needs. No compromise, no unnecessary features, just pure business value.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                            <small class="text-gray">100% aligned with your processes</small>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-blue fade-in-up">
+                        <div class="card-body">
+                            <div class="text-center mb-6">
+                                <div style="font-size: 3rem; color: var(--evo-blue);">🔧</div>
+                            </div>
+                            <h3>Zero Maintenance Headaches</h3>
+                            <p>Automatic updates, security patches, and scaling. Focus on growth, not technical maintenance.</p>
+                            <div class="progress">
+                                <div class="progress-bar blue" style="width: 95%"></div>
+                            </div>
+                            <small class="text-gray">95% reduction in IT overhead</small>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-orange fade-in-up">
+                        <div class="card-body">
+                            <div class="text-center mb-6">
+                                <div style="font-size: 3rem; color: var(--evo-orange);">🚀</div>
+                            </div>
+                            <h3>Instant Deployment</h3>
+                            <p>From idea to production in minutes. Test, iterate, and launch at the speed of business.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                            <small class="text-gray">Deploy 85% faster than traditional methods</small>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-blue fade-in-up">
+                        <div class="card-body">
+                            <div class="text-center mb-6">
+                                <div style="font-size: 3rem; color: var(--evo-blue);">📈</div>
+                            </div>
+                            <h3>Scalable Architecture</h3>
+                            <p>Built for growth. Handle millions of users without breaking a sweat. Enterprise-grade from day one.</p>
+                            <div class="progress">
+                                <div class="progress-bar blue" style="width: 99%"></div>
+                            </div>
+                            <small class="text-gray">99.9% uptime guarantee</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Demo -->
+        <section id="demo" class="section section-white">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <h2>See It In Action</h2>
+                    <p class="lead">Watch how quickly you can build a professional app</p>
+                </div>
+
+                <div class="grid grid-cols-2">
+                    <div class="card card-shadow">
+                        <div class="card-header">
+                            <h3>Traditional Development</h3>
+                            <span class="badge badge-gray">6 Months</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Requirements Gathering</span>
+                                    <span>4 weeks</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 20%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>UI/UX Design</span>
+                                    <span>6 weeks</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Backend Development</span>
+                                    <span>12 weeks</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Testing & Deployment</span>
+                                    <span>4 weeks</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <strong class="text-gray">Total Cost: $250,000</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-orange">
+                        <div class="card-header bg-orange text-white">
+                            <h3>EVO App Builder</h3>
+                            <span class="badge" style="background: rgba(255,255,255,0.2)">2 Weeks</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Drag & Drop Interface</span>
+                                    <span>2 days</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Business Logic Setup</span>
+                                    <span>3 days</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Integration & Testing</span>
+                                    <span>5 days</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <span>Deploy & Launch</span>
+                                    <span>1 click</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <strong class="text-orange">Total Cost: $12,000</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button class="btn btn-primary btn-lg" onclick="startDemo()">Start Interactive Demo</button>
+                </div>
+
+                <div id="demo-area" class="mt-8" style="display: none;">
+                    <div class="card card-shadow">
+                        <div class="card-header">
+                            <h4>Build Your First App - Live Demo</h4>
+                            <div class="flex items-center gap-4">
+                                <span>Progress:</span>
+                                <div class="progress" style="width: 200px;">
+                                    <div id="demo-progress" class="progress-bar" style="width: 0%"></div>
+                                </div>
+                                <span id="demo-percentage">0%</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="demo-step-1" class="demo-step">
+                                <h5>Step 1: Choose Your App Type</h5>
+                                <div class="grid grid-cols-3 mt-4">
+                                    <button class="btn btn-outline demo-choice" onclick="nextStep(1)">Customer Portal</button>
+                                    <button class="btn btn-outline demo-choice" onclick="nextStep(1)">Inventory System</button>
+                                    <button class="btn btn-outline demo-choice" onclick="nextStep(1)">Project Manager</button>
+                                </div>
+                            </div>
+
+                            <div id="demo-step-2" class="demo-step" style="display: none;">
+                                <h5>Step 2: Design Your Interface</h5>
+                                <p class="text-gray">Drag and drop components to build your layout</p>
+                                <div class="mt-4">
+                                    <div class="card card-bordered" style="min-height: 200px; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,.1) 10px, rgba(0,0,0,.1) 20px);">
+                                        <div class="card-body text-center">
+                                            <p class="text-gray">✨ Interface being generated...</p>
+                                            <div class="spinner" style="margin: 20px auto;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="btn btn-primary" onclick="nextStep(2)">Continue to Logic</button>
+                                </div>
+                            </div>
+
+                            <div id="demo-step-3" class="demo-step" style="display: none;">
+                                <h5>Step 3: Configure Business Logic</h5>
+                                <div class="mt-4">
+                                    <div class="form-group">
+                                        <label class="form-label">User Permissions</label>
+                                        <select class="form-control">
+                                            <option>Admin, Manager, User</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Data Validation</label>
+                                        <select class="form-control">
+                                            <option>Auto-generated rules</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" onclick="nextStep(3)">Deploy Application</button>
+                            </div>
+
+                            <div id="demo-step-4" class="demo-step" style="display: none;">
+                                <div class="text-center">
+                                    <h5 class="text-orange">🎉 Congratulations!</h5>
+                                    <p>Your application is now live and ready to use!</p>
+                                    <div class="alert alert-info">
+                                        <strong>Deployment URL:</strong> https://your-app.evo-solutions.com
+                                    </div>
+                                    <div class="mt-6">
+                                        <a href="#roi" class="btn btn-primary">Calculate Your Savings</a>
+                                        <button class="btn btn-secondary" onclick="resetDemo()">Try Another App</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="section section-blue">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <h2 class="text-white">Enterprise-Grade Features</h2>
+                    <p class="lead text-white">Everything you need for mission-critical applications</p>
+                </div>
+
+                <div class="grid grid-cols-4">
+                    <div class="text-center text-white">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔐</div>
+                        <h4>Security First</h4>
+                        <p>Bank-level encryption, SOC2 compliance, GDPR ready</p>
+                    </div>
+                    <div class="text-center text-white">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📱</div>
+                        <h4>Multi-Platform</h4>
+                        <p>Web, iOS, Android - one codebase, all platforms</p>
+                    </div>
+                    <div class="text-center text-white">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔄</div>
+                        <h4>Real-Time Sync</h4>
+                        <p>Live data updates across all devices instantly</p>
+                    </div>
+                    <div class="text-center text-white">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+                        <h4>Advanced Analytics</h4>
+                        <p>Built-in reporting and business intelligence</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Calculator -->
+        <section id="roi" class="section section-gray">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <h2>Calculate Your ROI</h2>
+                    <p class="lead">See exactly how much you'll save with EVO App Builder</p>
+                </div>
+
+                <div class="grid grid-cols-2">
+                    <div class="card card-shadow">
+                        <div class="card-header">
+                            <h3>Enter Your Project Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Project Complexity</label>
+                                <select class="form-control" id="complexity" onchange="calculateROI()">
+                                    <option value="simple">Simple (Basic CRUD)</option>
+                                    <option value="medium" selected>Medium (Workflows + Integrations)</option>
+                                    <option value="complex">Complex (Advanced Features)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Expected Users</label>
+                                <input type="number" class="form-control" id="users" value="100" onchange="calculateROI()">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Current Developer Rate ($/hour)</label>
+                                <input type="number" class="form-control" id="rate" value="150" onchange="calculateROI()">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Number of Apps Needed</label>
+                                <input type="number" class="form-control" id="apps" value="3" onchange="calculateROI()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-shadow card-orange">
+                        <div class="card-header bg-orange text-white">
+                            <h3>Your ROI Analysis</h3>
+                        </div>
+                        <div class="card-body" id="roi-results">
+                            <div class="mb-4">
+                                <div class="flex justify-between">
+                                    <strong>Traditional Development Cost:</strong>
+                                    <strong id="traditional-cost">$675,000</strong>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>EVO App Builder Cost:</span>
+                                    <span id="evo-cost">$36,000</span>
+                                </div>
+                                <hr>
+                                <div class="flex justify-between text-orange">
+                                    <strong>Total Savings:</strong>
+                                    <strong id="savings">$639,000</strong>
+                                </div>
+                                <div class="flex justify-between text-orange">
+                                    <strong>ROI Percentage:</strong>
+                                    <strong id="roi-percent">1,775%</strong>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5>Time Comparison</h5>
+                                <div class="flex justify-between">
+                                    <span>Traditional Timeline:</span>
+                                    <span id="traditional-time">54 weeks</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>EVO Timeline:</span>
+                                    <span id="evo-time">6 weeks</span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar blue" style="width: 89%"></div>
+                                </div>
+                                <small>89% faster to market</small>
+                            </div>
+
+                            <div class="mt-6">
+                                <a href="#contact" class="btn btn-primary btn-lg w-full">Get Your Custom Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section section-white">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <h2>Ready to Transform Your Development Process?</h2>
+                    <p class="lead">Join thousands of companies already building faster with EVO</p>
+                </div>
+
+                <div class="grid grid-cols-3">
+                    <div class="text-center">
+                        <div style="font-size: 3rem; color: var(--evo-orange); margin-bottom: 1rem;">📞</div>
+                        <h4>Schedule a Demo</h4>
+                        <p>See EVO in action with your specific use case</p>
+                        <a href="#" class="btn btn-outline">Book Demo</a>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 3rem; color: var(--evo-blue); margin-bottom: 1rem;">🚀</div>
+                        <h4>Start Free Trial</h4>
+                        <p>Build your first app today, no credit card required</p>
+                        <a href="#" class="btn btn-primary">Try Free</a>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 3rem; color: var(--evo-orange); margin-bottom: 1rem;">💬</div>
+                        <h4>Talk to Experts</h4>
+                        <p>Get personalized recommendations from our team</p>
+                        <a href="#" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EVO Solutions</h3>
+                    <p>Empowering businesses to build apps at the speed of thought.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Training</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="text-center mb-6">
+                    <img src="utilities/evo_logo.png" alt="EVO Solutions Logo" style="width: 248px; height: 60px; opacity: 0.8;">
+                </div>
+                <p>&copy; 2024 EVO Solutions. All rights reserved. Built with EVO App Builder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animate statistics on page load
+        function animateCounters() {
+            const counters = [
+                { element: 'apps-created', target: 1247, suffix: '' },
+                { element: 'time-saved', target: 15680, suffix: '' },
+                { element: 'cost-reduction', target: 2.3, suffix: 'M' },
+                { element: 'satisfaction', target: 98.2, suffix: '%' }
+            ];
+
+            counters.forEach(counter => {
+                const element = document.getElementById(counter.element);
+                let current = 0;
+                const increment = counter.target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= counter.target) {
+                        current = counter.target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = counter.suffix === 'M' ? 
+                        '$' + current.toFixed(1) + counter.suffix :
+                        Math.floor(current) + counter.suffix;
+                }, 30);
+            });
+        }
+
+        // Demo functionality
+        function startDemo() {
+            document.getElementById('demo-area').style.display = 'block';
+            document.getElementById('demo-area').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function nextStep(step) {
+            document.getElementById(`demo-step-${step}`).style.display = 'none';
+            document.getElementById(`demo-step-${step + 1}`).style.display = 'block';
+            
+            const progress = (step / 3) * 100;
+            document.getElementById('demo-progress').style.width = progress + '%';
+            document.getElementById('demo-percentage').textContent = Math.round(progress) + '%';
+
+            // Simulate processing time for step 2
+            if (step === 1) {
+                setTimeout(() => {
+                    const card = document.querySelector('#demo-step-2 .card');
+                    card.innerHTML = `
+                        <div class="card-body">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="card border">
+                                    <div class="card-body p-3">
+                                        <h6>User Dashboard</h6>
+                                        <div style="background: #f0f0f0; height: 60px; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                                <div class="card border">
+                                    <div class="card-body p-3">
+                                        <h6>Data Table</h6>
+                                        <div style="background: #f0f0f0; height: 60px; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-orange mt-4">✅ Interface generated successfully!</p>
+                        </div>
+                    `;
+                }, 2000);
+            }
+        }
+
+        function resetDemo() {
+            document.getElementById('demo-area').style.display = 'none';
+            document.querySelectorAll('.demo-step').forEach((step, index) => {
+                step.style.display = index === 0 ? 'block' : 'none';
+            });
+            document.getElementById('demo-progress').style.width = '0%';
+            document.getElementById('demo-percentage').textContent = '0%';
+        }
+
+        // ROI Calculator
+        function calculateROI() {
+            const complexity = document.getElementById('complexity').value;
+            const users = parseInt(document.getElementById('users').value) || 100;
+            const rate = parseInt(document.getElementById('rate').value) || 150;
+            const apps = parseInt(document.getElementById('apps').value) || 1;
+
+            const complexityMultipliers = {
+                simple: { hours: 800, evoPrice: 8000 },
+                medium: { hours: 1500, evoPrice: 12000 },
+                complex: { hours: 2500, evoPrice: 18000 }
+            };
+
+            const multiplier = complexityMultipliers[complexity];
+            const traditionalCost = (multiplier.hours * rate * apps);
+            const evoCost = (multiplier.evoPrice * apps);
+            const savings = traditionalCost - evoCost;
+            const roiPercent = ((savings / evoCost) * 100).toFixed(0);
+
+            const traditionalWeeks = Math.ceil((multiplier.hours * apps) / 40);
+            const evoWeeks = Math.ceil(apps * 2);
+
+            document.getElementById('traditional-cost').textContent = '$' + traditionalCost.toLocaleString();
+            document.getElementById('evo-cost').textContent = '$' + evoCost.toLocaleString();
+            document.getElementById('savings').textContent = '$' + savings.toLocaleString();
