@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .number {
+            font-size: 120px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .facts {
+            margin: 30px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .fact {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .buttons {
+            margin-top: 30px;
+        }
+        
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .binary {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            color: #4ecdc4;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="number">32</div>
+        
+        <div class="facts">
+            <div class="fact">✨ Perfect power: 32 = 2⁵</div>
+            <div class="fact">🌡️ Freezing point of water (32°F)</div>
+            <div class="fact">♟️ Number of squares on a chessboard</div>
+            <div class="fact">💾 Common memory size unit (32-bit)</div>
+        </div>
+        
+        <div class="binary hidden" id="binary">
+            Binary: 100000
+        </div>
+        
+        <div class="buttons">
+            <button onclick="showBinary()">Show Binary</button>
+            <button onclick="randomFact()">Random Fact</button>
+            <button onclick="calculate()">Calculate 32²</button>
+        </div>
+        
+        <div id="result" style="margin-top: 20px; font-size: 20px;"></div>
+    </div>
+
+    <script>
+        function showBinary() {
+            const binary = document.getElementById('binary');
+            binary.classList.toggle('hidden');
+        }
+        
+        function randomFact() {
+            const facts = [
+                "32 is the smallest number with exactly 6 divisors",
+                "In ASCII, 32 is the space character",
+                "32 teeth in a full adult human mouth",
+                "32 is the number of NFL teams",
+                "32 counties in Ireland",
+                "32 points on the Mariner's compass"
+            ];
+            
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById('result').innerHTML = `🎲 ${facts[randomIndex]}`;
+        }
+        
+        function calculate() {
+            const result = 32 * 32;
+            document.getElementById('result').innerHTML = `🔢 32² = ${result}`;
+        }
+    </script>
+</body>
+</html>
