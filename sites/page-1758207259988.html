@@ -3,181 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number 15 App</title>
+    <title>15</title>
     <link rel="stylesheet" href="utilities/evo_styles.css">
     <style>
-        .number-container {
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 60vh;
-            text-align: center;
-            padding: 2rem;
+            align-items: center;
         }
         
-        .main-number {
-            font-size: 8rem;
+        .number-display {
+            font-size: 12rem;
             font-weight: bold;
-            color: var(--primary-color, #007bff);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #2c3e50;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
             margin: 2rem 0;
+            font-family: 'Georgia', serif;
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
         
-        .number-facts {
-            background: var(--card-bg, #f8f9fa);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .description {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 2rem;
             max-width: 600px;
+            line-height: 1.6;
         }
         
-        .fact-item {
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background: white;
-            border-radius: 5px;
-            border-left: 4px solid var(--primary-color, #007bff);
-        }
-        
-        .counter-section {
+        .fun-facts {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
             margin: 2rem 0;
+            max-width: 500px;
+        }
+        
+        .fun-facts h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .fact-list {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .fact-list li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .fact-list li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+        
+        .interactive-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .counter {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
         }
         
-        .counter-btn {
-            background: var(--primary-color, #007bff);
-            color: white;
+        .counter button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
-        .counter-btn:hover {
-            background: var(--primary-hover, #0056b3);
-            transform: translateY(-2px);
+        .counter button:hover {
+            transform: scale(1.05);
         }
         
-        .current-count {
-            font-size: 2rem;
+        .btn-minus {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-plus {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-reset {
+            background: #3498db;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+        
+        .current-number {
+            font-size: 3rem;
             font-weight: bold;
-            color: var(--text-primary, #333);
-            min-width: 60px;
+            color: #2c3e50;
+            min-width: 100px;
         }
         
-        .footer {
+        footer {
+            margin-top: auto;
+            padding: 2rem 0;
             text-align: center;
-            padding: 2rem;
-            background: var(--footer-bg, #f8f9fa);
-            margin-top: 4rem;
-            border-top: 1px solid var(--border-color, #dee2e6);
         }
         
-        .footer img {
-            max-width: 200px;
-            height: auto;
+        .logo {
             opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo:hover {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Number 15 App</h1>
-        <p>Exploring the wonderful world of the number fifteen</p>
-    </header>
-
-    <main>
-        <div class="number-container">
-            <div class="main-number" id="displayNumber">15</div>
-            
-            <div class="number-facts">
-                <h2>Fun Facts About 15</h2>
-                <div class="fact-item">
-                    <strong>Mathematical:</strong> 15 is an odd composite number
-                </div>
-                <div class="fact-item">
-                    <strong>Prime Factors:</strong> 3 × 5 = 15
-                </div>
-                <div class="fact-item">
-                    <strong>Triangle Number:</strong> 15 is the 5th triangular number (1+2+3+4+5=15)
-                </div>
-                <div class="fact-item">
-                    <strong>Roman Numeral:</strong> XV
-                </div>
-                <div class="fact-item">
-                    <strong>Binary:</strong> 1111
-                </div>
-            </div>
-
-            <div class="counter-section">
-                <button class="counter-btn" onclick="decreaseNumber()">−</button>
-                <div class="current-count" id="currentCount">15</div>
-                <button class="counter-btn" onclick="increaseNumber()">+</button>
-            </div>
-
-            <div class="counter-section">
-                <button class="counter-btn" onclick="resetToFifteen()">Reset to 15</button>
-                <button class="counter-btn" onclick="multiplyByFifteen()">× 15</button>
-                <button class="counter-btn" onclick="divideByFifteen()">÷ 15</button>
+    <div class="container">
+        <h1>The Number</h1>
+        <div class="number-display">15</div>
+        
+        <div class="description">
+            Welcome to the world of fifteen! This simple app celebrates the number 15 in all its mathematical glory.
+        </div>
+        
+        <div class="fun-facts">
+            <h3>Fun Facts About 15</h3>
+            <ul class="fact-list">
+                <li>15 is the sum of the first 5 positive integers (1+2+3+4+5)</li>
+                <li>It's a triangular number and a composite number</li>
+                <li>15 minutes = quarter of an hour</li>
+                <li>In Roman numerals, 15 is written as XV</li>
+                <li>15 is the atomic number of phosphorus</li>
+            </ul>
+        </div>
+        
+        <div class="interactive-section">
+            <h3>Interactive Counter</h3>
+            <p>Start with 15 and see where you go!</p>
+            <div class="counter">
+                <button class="btn-minus" onclick="changeNumber(-1)">−</button>
+                <div class="current-number" id="currentNumber">15</div>
+                <button class="btn-plus" onclick="changeNumber(1)">+</button>
+                <button class="btn-reset" onclick="resetNumber()">Reset to 15</button>
             </div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <img src="utilities/evo_logo.png" alt="Evomotiv Logo" width="497" height="120">
-        <p>&copy; 2024 Number 15 App. Powered by Evomotiv.</p>
+    </div>
+    
+    <footer>
+        <img src="utilities/evo_logo.png" alt="Evomotiv" class="logo" width="497" height="120">
     </footer>
 
     <script>
-        let currentNumber = 15;
-
-        function updateDisplay() {
-            document.getElementById('displayNumber').textContent = currentNumber;
-            document.getElementById('currentCount').textContent = currentNumber;
+        let currentNum = 15;
+        
+        function changeNumber(change) {
+            currentNum += change;
+            document.getElementById('currentNumber').textContent = currentNum;
+            
+            // Add a little animation
+            const numDisplay = document.getElementById('currentNumber');
+            numDisplay.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                numDisplay.style.transform = 'scale(1)';
+            }, 150);
         }
-
-        function increaseNumber() {
-            currentNumber++;
-            updateDisplay();
+        
+        function resetNumber() {
+            currentNum = 15;
+            document.getElementById('currentNumber').textContent = currentNum;
+            
+            // Add reset animation
+            const numDisplay = document.getElementById('currentNumber');
+            numDisplay.style.color = '#e74c3c';
+            setTimeout(() => {
+                numDisplay.style.color = '#2c3e50';
+            }, 500);
         }
-
-        function decreaseNumber() {
-            currentNumber--;
-            updateDisplay();
-        }
-
-        function resetToFifteen() {
-            currentNumber = 15;
-            updateDisplay();
-        }
-
-        function multiplyByFifteen() {
-            currentNumber *= 15;
-            updateDisplay();
-        }
-
-        function divideByFifteen() {
-            currentNumber = Math.round(currentNumber / 15);
-            updateDisplay();
-        }
-
-        // Initialize display
-        updateDisplay();
     </script>
 </body>
 </html>
