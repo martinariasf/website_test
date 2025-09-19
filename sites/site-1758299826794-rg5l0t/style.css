@@ -1,0 +1,477 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-menu a:hover {
+    opacity: 0.8;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.hero {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 120px 20px 80px;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3);
+}
+
+.animated-nodes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    border-radius: 12px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.node1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.node2 {
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.node3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.connection {
+    position: absolute;
+    height: 2px;
+    background: #86efac;
+    opacity: 0.5;
+}
+
+.connection1 {
+    width: 200px;
+    top: 25%;
+    left: 15%;
+    transform: rotate(25deg);
+}
+
+.connection2 {
+    width: 150px;
+    bottom: 30%;
+    right: 20%;
+    transform: rotate(-15deg);
+}
+
+.features {
+    padding: 80px 20px;
+    background: white;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 3rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-color: #86efac;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.use-cases {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.use-cases h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 3rem;
+}
+
+.use-case-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    background: white;
+    border: 2px solid #e2e8f0;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.tab-button.active {
+    background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+    color: white;
+    border-color: #4ade80;
+}
+
+.tab-button:hover:not(.active) {
+    border-color: #86efac;
+}
+
+.tab-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+.tab-pane h3 {
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.tab-pane ul {
+    list-style: none;
+}
+
+.tab-pane li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tab-pane li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.benefits {
+    padding: 80px 20px;
+    background: white;
+}
+
+.benefits h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 3rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.benefit-item {
+    text-align: center;
+}
+
+.benefit-number {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #2563eb 0%, #86efac 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.contact {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.contact p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #64748b;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #86efac;
+}
+
+.submit-button {
+    background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 222, 128, 0.3);
+}
+
+.footer {
+    background: #1e293b;
+    color: white;
+    padding: 2rem 20px;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .features h2,
+    .use-cases h2,
+    .benefits h2,
+    .contact h2 {
+        font-size: 1.8rem;
+    }
+    
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
