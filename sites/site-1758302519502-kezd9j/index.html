@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxDrive - Premium Car Leasing | Best Deals Guaranteed</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">LuxDrive</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#deals">Best Deals</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact" class="cta-button">Get Quote</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Drive Your Dream Car Today</h1>
+                <p class="hero-subtitle">Premium car leasing with unbeatable prices and exceptional service</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('deals')">View Deals</button>
+                    <button class="btn-secondary" onclick="openCalculator()">Calculate Payment</button>
+                </div>
+                <div class="trust-badges">
+                    <div class="badge">✓ No Hidden Fees</div>
+                    <div class="badge">✓ 24/7 Support</div>
+                    <div class="badge">✓ Best Price Guarantee</div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="car-showcase">
+                    <div class="showcase-card">
+                        <div class="car-placeholder"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="deals" class="deals-section">
+        <div class="container">
+            <h2 class="section-title">Hot Deals This Month</h2>
+            <p class="section-subtitle">Limited time offers on premium vehicles</p>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-badge">SAVE £150/mo</div>
+                    <div class="car-image"></div>
+                    <h3>BMW 3 Series</h3>
+                    <div class="deal-specs">
+                        <span>2024 Model</span>
+                        <span>Automatic</span>
+                        <span>Hybrid</span>
+                    </div>
+                    <div class="price-tag">
+                        <span class="price-label">From</span>
+                        <span class="price">£399/mo</span>
+                    </div>
+                    <button class="btn-card">View Details</button>
+                </div>
+                <div class="deal-card featured">
+                    <div class="deal-badge">BEST SELLER</div>
+                    <div class="car-image"></div>
+                    <h3>Tesla Model 3</h3>
+                    <div class="deal-specs">
+                        <span>2024 Model</span>
+                        <span>Automatic</span>
+                        <span>Electric</span>
+                    </div>
+                    <div class="price-tag">
+                        <span class="price-label">From</span>
+                        <span class="price">£459/mo</span>
+                    </div>
+                    <button class="btn-card">View Details</button>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-badge">NEW ARRIVAL</div>
+                    <div class="car-image"></div>
+                    <h3>Mercedes A-Class</h3>
+                    <div class="deal-specs">
+                        <span>2024 Model</span>
+                        <span>Automatic</span>
+                        <span>Petrol</span>
+                    </div>
+                    <div class="price-tag">
+                        <span class="price-label">From</span>
+                        <span class="price">£349/mo</span>
+                    </div>
+                    <button class="btn-card">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="process-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Get your dream car in 3 simple steps</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Car</h3>
+                    <p>Browse our extensive collection and select your perfect vehicle</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Instant Quote</h3>
+                    <p>Receive competitive pricing with no hidden fees</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Drive Away Happy</h3>
+                    <p>Quick approval and delivery to your doorstep</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Exceptional service! Got my BMW delivered within 48 hours. The process was smooth and transparent."</p>
+                    <div class="customer">
+                        <div class="customer-avatar">JD</div>
+                        <div>
+                            <div class="customer-name">James Davidson</div>
+                            <div class="customer-title">Business Owner</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Best leasing experience ever! The team was professional and helped me find the perfect car within my budget."</p>
+                    <div class="customer">
+                        <div class="customer-avatar">SC</div>
+                        <div>
+                            <div class="customer-name">Sarah Chen</div>
+                            <div class="customer-title">Marketing Director</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Saved hundreds compared to other dealers. Highly recommend their service to anyone looking for a lease."</p>
+                    <div class="customer">
+                        <div class="customer-avatar">MP</div>
+                        <div>
+                            <div class="customer-name">Michael Patel</div>
+                            <div class="customer-title">IT Consultant</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Join thousands of happy customers driving their dream cars</p>
+                <div class="cta-form">
+                    <input type="email" placeholder="Enter your email" class="email-input">
+                    <button class="btn-primary">Get Free Quote</button>
+                </div>
+                <p class="cta-note">🔒 Your information is secure and will never be shared</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LuxDrive</h3>
+                    <p>Your trusted partner in premium car leasing since 2010</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Car Brands</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📞 0800 123 4567</p>
+                    <p>✉️ info@luxdrive.com</p>
+                    <p>🕐 Mon-Sat: 9AM-7PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuxDrive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="calculator-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Calculate Your Monthly Payment</h2>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label>Car Price</label>
+                    <input type="number" id="car-price" placeholder="£30,000">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment</label>
+                    <input type="number" id="down-payment" placeholder="£3,000">
+                </div>
+                <div class="form-group">
+                    <label>Lease Term (months)</label>
+                    <select id="lease-term">
+                        <option value="24">24 months</option>
+                        <option value="36" selected>36 months</option>
+                        <option value="48">48 months</option>
+                    </select>
+                </div>
+                <button class="btn-primary" onclick="calculatePayment()">Calculate</button>
+                <div id="result" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
