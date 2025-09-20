@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Learning Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #009688 0%, #00695c 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .level-selector {
+            background: #f5f5f5;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .level-selector label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .level-selector select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            text-align: right;
+        }
+
+        .user-message .bubble {
+            background: #667eea;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 20px 20px 5px 20px;
+            display: inline-block;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .bot-message .bubble {
+            background: white;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 20px 20px 20px 5px;
+            display: inline-block;
+            max-width: 85%;
+            word-wrap: break-word;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #009688;
+        }
+
+        .bot-response {
+            margin-bottom: 10px;
+        }
+
+        .italian-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #009688;
+            margin-bottom: 8px;
+        }
+
+        .english-text {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .corrections {
+            background: #fff3cd;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #856404;
+            margin: 5px 0;
+            border-left: 3px solid #ffc107;
+        }
+
+        .cultural-tip {
+            background: #e7f3ff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #0c5460;
+            margin: 5px 0;
+            border-left: 3px solid #17a2b8;
+        }
+
+        .encouragement {
+            background: #d4edda;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #155724;
+            margin: 5px 0;
+            border-left: 3px solid #28a745;
+        }
+
+        .input-area {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #messageInput:focus {
+            border-color: #009688;
+        }
+
+        #sendButton {
+            background: #009688;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        #sendButton:hover {
+            background: #00695c;
+        }
+
+        #sendButton:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 10px 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots span {
+            animation: typing 1.4s infinite;
+            animation-fill-mode: both;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 20px;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            border: 2px dashed #009688;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                height: 95vh;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .user-message .bubble,
+            .bot-message .bubble {
+                max-width: 90%;
+            }
+            
+            #messageInput {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇮🇹 Italian Learning Chatbot</h1>
+            <p>Ciao! I'm Marco, your Italian language tutor. Let's practice together!</p>
+        </div>
+        
+        <div class="level-selector">
+            <label for="levelSelect">Your Level:</label>
+            <select id="levelSelect">
+                <option value="principiante">Principiante (Beginner)</option>
+                <option value="elementare">Elementare (Elementary)</option>
+                <option value="intermedio">Intermedio (Intermediate)</option>
+                <option value="avanzato">Avanzato (Advanced)</option>
+            </select>
+        </div>
+
+        <div class="chat-container">
+            <div class="messages" id="messages">
+                <div class="welcome-message">
+                    <p>Benvenuto! Welcome to your Italian learning journey! 🎯</p>
+                    <p>Start by saying "Ciao" or ask me any question in Italian or English.</p>
+                    <p>I'll help you practice conversation, correct your mistakes, and share cultural insights!</p>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                Marco is typing<span class="typing-dots">
+                    <span>.</span><span>.</span><span>.</span>
+                </span>
+            </div>
+            
+            <div class="input-area">
+                <div class="input-group">
+                    <input type="text" id="messageInput" placeholder="Scrivi qui il tuo messaggio... (Write your message here...)" autofocus>
+                    <button id="sendButton">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sessionId = 'user_' + Math.random().toString(36).substr(2, 9);
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const levelSelect = document.getElementById('levelSelect');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            if (isUser) {
+                messageDiv.innerHTML = `<div class="bubble">${content}</div>`;
+            } else {
+                let html = '<div class="bubble">';
+                html += '<div class="bot-response">';
+                
+                if (content.italian_response) {
+                    html += `<div class="italian-text">${content.italian_response}</div>`;
+                }
+                
+                if (content.english_translation) {
+                    html += `<div class="english-text">${content.english_translation}</div>`;
+                }
+                
+                if (content.corrections) {
+                    html += `<div class="corrections"><strong>💡 Suggestion:</strong> ${content.corrections}</div>`;
+                }
+                
+                if (content.cultural_tip) {
+                    html += `<div class="cultural-tip"><strong>🎭 Cultural Tip:</strong> ${content.cultural_tip}</div>`;
+                }
+                
+                if (content.encouragement) {
+                    html += `<div class="encouragement"><strong>🌟 Encouragement:</strong> ${content.encouragement}</div>`;
+                }
+                
+                html += '</div>';
+                html += '</div>';
+                messageDiv.innerHTML = html;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = 'block';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            const level = levelSelect.value;
+            
+            // Add user message to chat
+            addMessage(message, true);
+            messageInput.value = '';
+            
+            // Disable input while processing
+            sendButton.disabled = true;
+            messageInput.disabled = true;
+            showTypingIndicator();
+
+            try {
+                const response = await fetch('https://martinariasfornara.app.n8n.cloud/webhook/italian-chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        level: level,
+                        sessionId: sessionId,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Add bot response to chat
+                addMessage(data);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage({
+                    italian_response: "Mi dispiace, c'è stato un problema.",
+                    english_translation: "I'm sorry, there was a problem.",
+                    encouragement: "Please try again! Non arrenderti! (Don't give up!)"
+                });
+            } finally {
+                // Re-enable input
+                hideTypingIndicator();
+                sendButton.disabled = false;
+                messageInput.disabled = false;
+                messageInput.focus();
+            }
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Level change notification
+        levelSelect.addEventListener('change', function() {
+            addMessage({
+                italian_response: `Perfetto! Ora procederemo al livello ${this.value}.`,
+                english_translation: `Perfect! Now we'll proceed at ${this.value} level.`,
+                encouragement: "Great choice! I'll adjust my responses to match your level."
+            });
+        });
+
+        // Focus input on page load
+        window.addEventListener('load', function() {
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>
