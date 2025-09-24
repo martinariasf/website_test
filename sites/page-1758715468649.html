@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMVSS111 Test Report Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .login-screen {
+            padding: 60px;
+            text-align: center;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .login-screen h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .login-screen input {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .login-screen button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .login-screen button:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .main-app {
+            display: none;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            background: #34495e;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .file-upload {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload label {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .file-upload label:hover {
+            background: #2980b9;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #95a5a6;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #27ae60;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+
+        .toggle-switch.active::before {
+            left: 32px;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        .tabs {
+            display: flex;
+            background: #ecf0f1;
+            overflow-x: auto;
+        }
+
+        .tab {
+            background: #bdc3c7;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab:hover {
+            background: #95a5a6;
+        }
+
+        .tab.active {
+            background: #3498db;
+            color: white;
+            border-bottom-color: #2980b9;
+        }
+
+        .content {
+            padding: 30px;
+            min-height: 500px;
+            background: #fff;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .form-group input:disabled,
+        .form-group textarea:disabled,
+        .form-group select:disabled {
+            background: #ecf0f1;
+            cursor: not-allowed;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .status-pass {
+            background: #27ae60;
+        }
+
+        .status-fail {
+            background: #e74c3c;
+        }
+
+        .status-pending {
+            background: #f39c12;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .save-btn:hover {
+            background: #219a52;
+        }
+
+        .export-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 10px;
+            transition: background 0.3s;
+        }
+
+        .export-btn:hover {
+            background: #8e44ad;
+        }
+
+        .file-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #27ae60;
+        }
+
+        .file-info h3 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .tabs {
+                font-size: 14px;
+            }
+
+            .tab {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Screen -->
+        <div class="login-screen" id="loginScreen">
+            <h1>🔒 FMVSS111 Test Report Manager</h1>
+            <p>Enter PIN to access the application</p>
+            <input type="password" id="pinInput" placeholder="Enter PIN" maxlength="4">
+            <br>
+            <button onclick="login()">Access Application</button>
+            <div id="loginError" style="color: #ff6b6b; margin-top: 15px; display: none;">Invalid PIN. Please try again.</div>
+        </div>
+
+        <!-- Main Application -->
+        <div class="main-app" id="mainApp">
+            <div class="header">
+                <h1>FMVSS111 Test Report Manager</h1>
+                <p>Standardized Vehicle Rear Visibility System Testing Tool</p>
+            </div>
+
+            <div class="controls">
+                <div class="file-upload">
+                    <label for="fileInput">📂 Import HTML Report</label>
+                    <input type="file" id="fileInput" accept=".html,.htm" onchange="importFile()">
+                    <span id="fileName" style="color: white; margin-left: 10px;">No file selected</span>
+                </div>
+
+                <div class="mode-toggle">
+                    <span>View Mode</span>
+                    <div class="toggle-switch" id="editToggle" onclick="toggleEditMode()"></div>
+                    <span>Edit Mode</span>
+                </div>
+
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+
+            <div class="tabs" id="tabs">
+                <button class="tab active" onclick="showSection('administrative')">📋 Administrative</button>
+                <button class="tab" onclick="showSection('vehicleData')">🚗 Vehicle Data</button>
+                <button class="tab" onclick="showSection('inspection')">🔍 Inspection</button>
+                <button class="tab" onclick="showSection('fieldOfView')">👁️ Field of View</button>
+                <button class="tab" onclick="showSection('responseTime')">⏱️ Response Time</button>
+                <button class="tab" onclick="showSection('lingerTime')">⏰ Linger Time</button>
+                <button class="tab" onclick="showSection('deactivation')">🔧 Deactivation</button>
+                <button class="tab" onclick="showSection('durability')">💪 Durability</button>
+                <button class="tab" onclick="showSection('summary')">📊 Summary</button>
+            </div>
+
+            <div class="content">
+                <div id="fileInfo" class="file-info" style="display: none;">
+                    <h3>📄 Imported File Information</h3>
+                    <p><strong>File:</strong> <span id="importedFileName"></span></p>
+                    <p><strong>Import Date:</strong> <span id="importDate"></span></p>
+                </div>
+
+                <!-- Administrative Section -->
+                <div class="section active" id="administrative">
+                    <h2>📋 Administrative Information</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="reportDate">Report Date:</label>
+                                <input type="date" id="reportDate" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="testInstitute">Test Institute:</label>
+                                <input type="text" id="testInstitute" value="EVOMOTIV" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author:</label>
+                                <input type="text" id="author" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="clientCompany">Client Company:</label>
+                                <select id="clientCompany" disabled>
+                                    <option value="">Select OEM</option>
+                                    <option value="AMG">AMG</option>
+                                    <option value="MB">Mercedes-Benz</option>
+                                    <option value="Porsche">Porsche</option>
+                                    <option value="Audi">Audi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleModel">Vehicle Model:</label>
+                                <input type="text" id="vehicleModel" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="modelYear">Model Year (MY):</label>
+                                <input type="number" id="modelYear" min="2020" max="2030" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactInfo">Contact Information:</label>
+                        <textarea id="contactInfo" rows="3" placeholder="Name, Company, Address, Phone, Email" disabled></textarea>
+                    </div>
+                </div>
+
+                <!-- Vehicle Data Section -->
+                <div class="section" id="vehicleData">
+                    <h2>🚗 Vehicle Data</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="vin">VIN (Vehicle Identification Number):</label>
+                                <input type="text" id="vin" maxlength="17" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="licensePlate">License Plate:</label>
+                                <input type="text" id="licensePlate" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="transmission">Transmission Type:</label>
+                                <select id="transmission" disabled>
+                                    <option value="">Select Type</option>
+                                    <option value="Manual">Manual</option>
+                                    <option value="Automatic">Automatic</option>
+                                    <option value="CVT">CVT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="hwVersion">Hardware Version:</label>
+                                <input type="text" id="hwVersion" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="swVersion">Software Version:</label>
+                                <input type="text" id="swVersion" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="cameraSpecs">Camera Specifications:</label>
+                                <textarea id="cameraSpecs" rows="3" disabled></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inspection Section -->
+                <div class="section" id="inspection">
+                    <h2>🔍 Inspection (S5.5.1)</h2>
+                    <div class="form-group">
+                        <label>Can the image be disabled by the driver?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="imageDisable" value="yes" id="imageDisableYes" disabled>
+                                <label for="imageDisableYes">Yes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="imageDisable" value="no" id="imageDisableNo" disabled>
+                                <label for="imageDisableNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inspectionNotes">Inspection Notes:</label>
+                        <textarea id="inspectionNotes" rows="4" disabled></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inspectionResult">Result:</label>
+                        <select id="inspectionResult" disabled>
+                            <option value="">Select Result</option>
+                            <option value="PASS">PASS</option>
+                            <option value="FAIL">FAIL</option>
+                        </select>
+                        <span class="status-indicator" id="inspectionStatus"></span>
+                    </div>
+                </div>
+
+                <!-- Field of View Section -->
+                <div class="section" id="fieldOfView">
+                    <h2>👁️ Field of View Test (S5.5.2)</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="horizontalAngle">Horizontal Angle (degrees):</label>
+                                <input type="number" id="horizontalAngle" step="0.1" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="verticalAngle">Vertical Angle (degrees):</label>
+                                <input type="number" id="verticalAngle" step="0.1" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="measurementDistance">Measurement Distance (meters):</label>
+                                <input type="number" id="measurementDistance" step="0.1" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="fieldOfViewResult">Result:</label>
+                                <select id="fieldOfViewResult" disabled>
+                                    <option value="">Select Result</option>
+                                    <option value="PASS">PASS</option>
+                                    <option value="FAIL">FAIL</option>
+                                </select>
+                                <span class="status-indicator" id="fieldOfViewStatus"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Response Time Section -->
+                <div class="section" id="responseTime">
+                    <h2>⏱️ Response Time Test (S5.5.3)</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="responseTimeMs">Response Time (milliseconds):</label>
+                                <input type="number" id="responseTimeMs" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="temperature">Test Temperature (°C):</label>
+                                <input type="number" id="temperature" step="0.1" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="responseTimeResult">Result:</label>
+                                <select id="responseTimeResult" disabled>
+                                    <option value="">Select Result</option>
+                                    <option value="PASS">PASS</option>
+                                    <option value="FAIL">FAIL</option>
+                                </select>
+                                <span class="status-indicator" id="responseTimeStatus"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linger Time Section -->
+                <div class="section" id="lingerTime">
+                    <h2>⏰ Linger Time Test (S5.5.4)</h2>
+                    <div class="form-group">
+                        <label for="lingerTimeSeconds">Linger Time (seconds):</label>
+                        <input type="number" id="lingerTimeSeconds" step="0.1" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="lingerTimeResult">Result:</label>
+                        <select id="lingerTimeResult" disabled>
+                            <option value="">Select Result</option>
+                            <option value="PASS">PASS</option>
+                            <option value="FAIL">FAIL</option>
+                        </select>
+                        <span class="status-indicator" id="lingerTimeStatus"></span>
+                    </div>
+                </div>
+
+                <!-- Deactivation Section -->
+                <div class="section" id="deactivation">
+                    <h2>🔧 Deactivation Test (S5.5.5)</h2>
+                    <div class="form-group">
+                        <label>Can the system be deactivated?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="deactivation" value="yes" id="deactivationYes" disabled>
+                                <label for="deactivationYes">Yes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="deactivation" value="no" id="deactivationNo" disabled>
+                                <label for="deactivationNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="deactivationResult">Result:</label>
+                        <select id="deactivationResult" disabled>
+                            <option value="">Select Result</option>
+                            <option value="PASS">PASS</option>
+                            <option value="FAIL">FAIL</option>
+                        </select>
+                        <span class="status-indicator" id="deactivationStatus"></span>
+                    </div>
+                </div>
+
+                <!-- Durability Section -->
+                <div class="section" id="durability">
+                    <h2>💪 Durability Test (S6)</h2>
+                    <div class="form-group">
+                        <label for="durabilityNotes">Durability Test Notes:</label>
+                        <textarea id="durabilityNotes" rows="4" placeholder="Reference to external durability report..." disabled></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="durabilityResult">Result:</label>
+                        <select id="durabilityResult" disabled>
+                            <option value="">Select Result</option>
+                            <option value="PASS">PASS</option>
+                            <option value="FAIL">FAIL</option>
+                        </select>
+                        <span class="status-indicator" id="durabilityStatus"></span>
+                    </div>
+                </div>
+
+                <!-- Summary Section -->
+                <div class="section" id="summary">
+                    <h2>📊 Test Summary</h2>
+                    <div class="form-group">
+                        <label for="overallResult">Overall Test Result:</label>
+                        <select id="overallResult" disabled>
+                            <option value="">Pending</option>
+                            <option value="PASS">PASS</option>
+                            <option value="FAIL">FAIL</option>
+                        </select>
+                        <span class="status-indicator" id="overallStatus"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="summaryNotes">Summary Notes:</label>
+                        <textarea id="summaryNotes" rows="5" disabled></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="testEngineer">Test Engineer:</label>
+                        <input type="text" id="testEngineer" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="coordinator">Test Coordinator:</label>
+                        <input type="text" id="coordinator" disabled>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="save-btn" onclick="saveData()">💾 Save Report</button>
+                    <button class="export-btn" onclick="exportReport()">📄 Export to HTML</button>
+                    <button class="export-btn" onclick="exportToPDF()">📑 Export to PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let editMode = false;
+        let reportData = {};
+
+        // Initialize the application
+        function init() {
+            document.getElementById('reportDate').value = new Date().toISOString().split('T')[0];
+            updateStatusIndicators();
+        }
+
+        // Login functionality
+        function login() {
+            const pin = document.getElementById('pinInput').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            if (pin === '1234') {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                init();
+            } else {
+                errorDiv.style.display = 'block';
+                document.getElementById('pinInput').value = '';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Logout functionality
+        function logout() {
+            if (confirm('Are you sure you want to logout? Any unsaved changes will be lost.')) {
+                document.getElementById('loginScreen').style.display = 'block';
+                document.getElementById('mainApp').style.display = 'none';
+                document.getElementById('pinInput').value = '';
+            }
+        }
+
+        // Allow Enter key for login
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('pinInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    login();
+                }
+            });
+        });
+
+        // Toggle edit mode
+        function toggleEditMode() {
+            editMode = !editMode;
+            const toggle = document.getElementById('editToggle');
+            const inputs = document.querySelectorAll('input, textarea, select');
+            
+            toggle.classList.toggle('active');
+            
+            inputs.forEach(input => {
+                input.disabled = !editMode;
+            });
+        }
+
+        // Show section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Import file functionality
+        function importFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const content = e.target.result;
+                        parseImportedData(content);
+                        
+                        document.getElementById('fileName').textContent = file.name;
+                        document.getElementById('importedFileName').textContent = file.name;
+                        document.getElementById('importDate').textContent = new Date().toLocaleString();
+                        document.getElementById('fileInfo').style.display = 'block';
+                        
+                        alert('File imported successfully!');
+                    } catch (error) {
+                        alert('Error importing file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // Parse imported data (simplified - would need more complex parsing for real HTML)
+        function parseImportedData(content) {
+            // This is a simplified parser - in reality, you'd need more sophisticated HTML parsing
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(content, 'text/html');
+            
+            // Try to extract data from common HTML patterns
+            // This would need to be customized based on the actual HTML structure
+            const dataFields = doc.querySelectorAll('[data-field]');
+            dataFields.forEach(field => {
+                const fieldName = field.getAttribute('data-field');
+                const value = field.textContent || field.value;
+                if (document.getElementById(fieldName)) {
+                    document.getElementById(fieldName).value = value;
+                }
+            });
+            
+            updateStatusIndicators();
+        }
+
+        // Update status indicators
+        function updateStatusIndicators() {
+            const resultSelects = document.querySelectorAll('select[id$="Result"]');
+            resultSelects.forEach(select => {
+                const statusId = select.id.replace('Result', 'Status');
+                const statusIndicator = document.getElementById(statusId);
+                if (statusIndicator) {
+                    statusIndicator.className = 'status-indicator';
+                    switch(select.value) {
+                        case 'PASS':
+                            statusIndicator.classList.add('status-pass');
+                            break;
+                        case 'FAIL':
+                            statusIndicator.classList.add('status-fail');
+                            break;
+                        default:
+                            statusIndicator.classList.add('status-pending');
+                    }
+                }
+            });
+            
+            updateOverallResult();
+        }
+
+        // Update overall result
+        function updateOverallResult() {
+            const testResults = [
+                'inspectionResult',
+                'fieldOfViewResult',
+                'responseTimeResult',
+                'lingerTimeResult',
+                'deactivationResult',
+                'durabilityResult'
+            ];
+            
+            let hasFailure = false;
+            let allCompleted = true;
+            
+            testResults.forEach(resultId => {
+                const result = document.getElementById(resultId).value;
+                if (result === 'FAIL') {
+                    hasFailure = true;
+                } else if (!result) {
+                    allCompleted = false;
+                }
+            });
+            
+            const overallResult = document.getElementById('overallResult');
+            const overallStatus = document.getElementById('overallStatus');
+            
+            if (hasFailure) {
+                overallResult.value = 'FAIL';
+            } else if (allCompleted) {
+                overallResult.value = 'PASS';
+            } else {
+                overallResult.value = '';
+            }
+            
+            overallStatus.className = 'status-indicator';
+            switch(overallResult.value) {
+                case 'PASS':
+                    overallStatus.classList.add('status-pass');
+                    break
