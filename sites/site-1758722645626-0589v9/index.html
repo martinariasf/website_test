@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Excel Vergleichstool</title>
+  <link rel="stylesheet" href="../utilities/evo_styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+  
+  <header>
+    <nav class="navbar">
+      <div class="container navbar-container">
+        <div class="navbar-brand">Excel Vergleich</div>
+        <div class="navbar-menu">
+          <a href="#" class="navbar-link active">Vergleich</a>
+          <a href="#hilfe" class="navbar-link">Hilfe</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero bg-light text-center">
+      <div class="container">
+        <h1 class="hero-title">Excel Dateien Vergleichen</h1>
+        <p class="hero-subtitle">Laden Sie zwei Excel-Dateien hoch und vergleichen Sie deren Inhalte automatisch</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-cols-2 gap-6 mb-8">
+          <div class="card card-shadow card-orange">
+            <div class="card-header">
+              <h3 class="mb-0">Erste Excel-Datei</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="file1" class="form-label">Datei 1 auswählen (.xlsx, .xls)</label>
+                <input type="file" id="file1" class="form-control" accept=".xlsx,.xls" required>
+                <div class="form-text">Unterstützte Formate: Excel (.xlsx, .xls)</div>
+              </div>
+              <div id="file1-info" class="alert alert-info d-none">
+                <strong>Datei geladen:</strong> <span id="file1-name"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-shadow card-blue">
+            <div class="card-header">
+              <h3 class="mb-0">Zweite Excel-Datei</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="file2" class="form-label">Datei 2 auswählen (.xlsx, .xls)</label>
+                <input type="file" id="file2" class="form-control" accept=".xlsx,.xls" required>
+                <div class="form-text">Unterstützte Formate: Excel (.xlsx, .xls)</div>
+              </div>
+              <div id="file2-info" class="alert alert-info d-none">
+                <strong>Datei geladen:</strong> <span id="file2-name"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-8">
+          <button id="compare-btn" class="btn btn-primary btn-lg" disabled>
+            Dateien vergleichen
+          </button>
+          <button id="download-btn" class="btn btn-secondary btn-lg d-none ml-4">
+            Bericht herunterladen
+          </button>
+        </div>
+
+        <div id="loading" class="text-center d-none mb-8">
+          <div class="alert alert-warning">
+            <strong>Verarbeitung läuft...</strong> Bitte warten Sie, während die Dateien verglichen werden.
+          </div>
+        </div>
+
+        <div id="results" class="d-none">
+          <div class="card card-shadow mb-6">
+            <div class="card-header">
+              <h2 class="mb-0">
+                Vergleichsergebnis
+                <span id="differences-count" class="badge badge-orange ml-3"></span>
+              </h2>
+            </div>
+            <div class="card-body">
+              <div id="summary" class="mb-4"></div>
+              
+              <div class="tabs mb-6">
+                <button class="tab active" data-tab="unterschiede">Unterschiede</button>
+                <button class="tab" data-tab="datei1">Datei 1</button>
+                <button class="tab" data-tab="datei2">Datei 2</button>
+              </div>
+              
+              <div id="tab-unterschiede" class="tab-panel active">
+                <div id="differences-table-container">
+                  <!-- Unterschiede werden hier eingefügt -->
+                </div>
+              </div>
+              
+              <div id="tab-datei1" class="tab-panel">
+                <h4>Inhalt von Datei 1</h4>
+                <div id="file1-preview" class="table-container">
+                  <!-- Datei 1 Inhalt wird hier angezeigt -->
+                </div>
+              </div>
+              
+              <div id="tab-datei2" class="tab-panel">
+                <h4>Inhalt von Datei 2</h4>
+                <div id="file2-preview" class="table-container">
+                  <!-- Datei 2 Inhalt wird hier angezeigt -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hilfe" class="section bg-light">
+      <div class="container">
+        <h2 class="text-center mb-8">Hilfe & Anleitung</h2>
+        
+        <div class="grid grid-cols-3 gap-6">
+          <div class="card card-shadow">
+            <div class="card-body text-center">
+              <h4 class="text-orange mb-4">1. Dateien hochladen</h4>
+              <p>Wählen Sie zwei Excel-Dateien (.xlsx oder .xls) aus, die Sie vergleichen möchten. Beide Dateien müssen ausgewählt werden, bevor der Vergleich gestartet werden kann.</p>
+            </div>
+          </div>
+          
+          <div class="card card-shadow">
+            <div class="card-body text-center">
+              <h4 class="text-blue mb-4">2. Vergleich starten</h4>
+              <p>Klicken Sie auf "Dateien vergleichen" um den automatischen Vergleichsprozess zu starten. Das Tool analysiert jede Zelle und identifiziert Unterschiede.</p>
+            </div>
+          </div>
+          
+          <div class="card card-shadow">
+            <div class="card-body text-center">
+              <h4 class="text-gray mb-4">3. Ergebnisse anzeigen</h4>
+              <p>Unterschiede werden farblich hervorgehoben angezeigt. Sie können zwischen verschiedenen Ansichten wechseln und einen Bericht herunterladen.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="alert alert-info mt-8">
+          <strong>Hinweis:</strong> Das Tool funktioniert komplett im Browser. Ihre Dateien werden nicht auf einen Server hochgeladen und bleiben auf Ihrem Computer.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <img src="../utilities/evo_logo.png" width="248" height="60" alt="Evomotiv GmbH logo" class="mb-4">
+        <p>© Evomotiv GmbH 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
