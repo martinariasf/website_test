@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMVSS111 Test Report Manager</title>
+    <link rel="stylesheet" href="utilities/evo_styles.css">
+</head>
+<body>
+    <!-- PIN Lock Screen -->
+    <div id="lockScreen" class="fixed inset-0 bg-blue flex items-center justify-center z-50">
+        <div class="card card-shadow bg-white p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <h1 class="text-orange mb-4">FMVSS111 TEST REPORT</h1>
+                <h2 class="text-blue text-xl">SECURE ACCESS REQUIRED</h2>
+            </div>
+            <div class="form-group">
+                <label for="pinInput" class="form-label">Enter PIN</label>
+                <input type="password" id="pinInput" class="form-control text-center" placeholder="••••" maxlength="4">
+                <div id="pinError" class="form-error" style="display: none;">Incorrect PIN. Please try again.</div>
+            </div>
+            <button id="unlockBtn" class="btn btn-primary w-full">UNLOCK SYSTEM</button>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" style="display: none;">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container navbar-container">
+                <a href="#" class="navbar-brand">FMVSS111 REPORTER</a>
+                <div class="flex items-center gap-4">
+                    <button id="editModeBtn" class="btn btn-sm btn-outline">
+                        <span id="editModeText">ENABLE EDIT</span>
+                    </button>
+                    <button id="importBtn" class="btn btn-sm btn-primary">IMPORT HTML</button>
+                    <button id="exportBtn" class="btn btn-sm btn-secondary">EXPORT REPORT</button>
+                    <button id="lockBtn" class="btn btn-sm btn-ghost">LOCK</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container py-8">
+            <!-- Report Header -->
+            <section class="card card-shadow card-orange mb-8">
+                <div class="card-header">
+                    <h2 class="text-orange mb-0">VEHICLE REAR VISIBILITY SYSTEM TEST REPORT</h2>
+                    <p class="text-gray mb-0">Federal Motor Vehicle Safety Standard 111</p>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="form-group">
+                            <label class="form-label">Report ID</label>
+                            <div class="editable-field" data-field="reportId">PAGXXX_001</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Test Date</label>
+                            <div class="editable-field" data-field="testDate">2024-01-15</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <div class="editable-field badge badge-orange" data-field="status">IN PROGRESS</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vehicle Information -->
+            <section class="card card-shadow mb-8">
+                <div class="card-header">
+                    <h3 class="text-blue mb-0">VEHICLE DATA</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="form-group">
+                            <label class="form-label">OEM</label>
+                            <div class="editable-field" data-field="oem">Mercedes-Benz</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Vehicle Model</label>
+                            <div class="editable-field" data-field="vehicleModel">C-Class W206</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Model Year</label>
+                            <div class="editable-field" data-field="modelYear">2024</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">VIN</label>
+                            <div class="editable-field" data-field="vin">WDD2050461A123456</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">License Plate</label>
+                            <div class="editable-field" data-field="licensePlate">EVO-2024</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Transmission</label>
+                            <div class="editable-field" data-field="transmission">9G-TRONIC</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Test Sections -->
+            <div class="tabs mb-8">
+                <button class="tab active" data-tab="inspection">A. Inspection</button>
+                <button class="tab" data-tab="fieldOfView">B. Field-of-View</button>
+                <button class="tab" data-tab="imageSize">C. Image Size</button>
+                <button class="tab" data-tab="responseTime">D. Response Time</button>
+                <button class="tab" data-tab="lingerTime">E. Linger Time</button>
+                <button class="tab" data-tab="deactivation">F. Deactivation</button>
+            </div>
+
+            <!-- A. Inspection -->
+            <div id="inspection" class="tab-panel active">
+                <div class="card card-shadow">
+                    <div class="card-header">
+                        <h3 class="text-blue mb-0">A. GENERAL INSPECTION</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="space-y-6">
+                            <div class="form-group">
+                                <label class="form-label">Can the image be disabled by the driver?</label>
+                                <div class="editable-field" data-field="canDisable">Yes</div>
+                                <div class="form-group mt-2">
+                                    <label class="form-label">Result</label>
+                                    <div class="editable-field badge badge-orange" data-field="disableResult">PASS</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Is the rearview image displayed within 2 seconds?</label>
+                                <div class="editable-field" data-field="displayTime">Yes</div>
+                                <div class="form-group mt-2">
+                                    <label class="form-label">Measured Time (seconds)</label>
+                                    <div class="editable-field" data-field="measuredTime">1.2</div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label class="form-label">Result</label>
+                                    <div class="editable-field badge badge-orange" data-field="timeResult">PASS</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Comments</label>
+                                <div class="editable-field" data-field="inspectionComments">All inspection criteria met according to FMVSS 111 standards.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. Field-of-View Test -->
+            <div id="fieldOfView" class="tab-panel">
+                <div class="card card-shadow">
+                    <div class="card-header">
+                        <h3 class="text-blue mb-0">B. FIELD-OF-VIEW TEST</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label">Horizontal Field Angle (degrees)</label>
+                                <div class="editable-field" data-field="horizontalAngle">130</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Vertical Field Angle (degrees)</label>
+                                <div class="editable-field" data-field="verticalAngle">45</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Distance to Test Object (m)</label>
+                                <div class="editable-field" data-field="testDistance">10.67</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Field-of-View Result</label>
+                                <div class="editable-field badge badge-orange" data-field="fovResult">PASS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C. Test Object Image Size -->
+            <div id="imageSize" class="tab-panel">
+                <div class="card card-shadow">
+                    <div class="card-header">
+                        <h3 class="text-blue mb-0">C. TEST OBJECT IMAGE SIZE</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label">Test Object Height on Display (mm)</label>
+                                <div class="editable-field" data-field="objectHeight">12.5</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Display Size (inches)</label>
+                                <div class="editable-field" data-field="displaySize">8.0</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Image Size Result</label>
+                                <div class="editable-field badge badge-orange" data-field="imageSizeResult">PASS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- D. Response Time -->
+            <div id="responseTime" class="tab-panel">
+                <div class="card card-shadow">
+                    <div class="card-header">
+                        <h3 class="text-blue mb-0">D. RESPONSE TIME TEST</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="form-group">
+                                <label class="form-label">Test 1 (seconds)</label>
+                                <div class="editable-field" data-field="responseTest1">1.1</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Test 2 (seconds)</label>
+                                <div class="editable-field" data-field="responseTest2">1.2</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Test 3 (seconds)</label>
+                                <div class="editable-field" data-field="responseTest3">1.0</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Average Response Time</label>
+                                <div class="editable-field" data-field="avgResponseTime">1.1</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Response Time Result</label>
+                                <div class="editable-field badge badge-orange" data-field="responseResult">PASS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E. Linger Time -->
+            <div id="lingerTime" class="tab-panel">
+                <div class="card card-shadow">
+                    <div class="card-header">
+                        <h3 class="text-blue mb-0">E. LINGER TIME TEST</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label">Measured Linger Time (seconds)</label>
+                                <div class="editable-field" data-field="lingerTime">8.5</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Linger Time Result</label>
+                                <div class="editable-field badge badge-orange" data-field="lingerResult">PASS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- F. Deactivation -->
+            <div id="deactivation" class="tab-panel">
+                <div class="card card-shadow">
+                    <div class="card-header">
+                        <h3 class="text-blue mb-0">F. DEACTIVATION TEST</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Can system be deactivated?</label>
+                            <div class="editable-field" data-field="canDeactivate">Yes</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Deactivation Method</label>
+                            <div class="editable-field" data-field="deactivationMethod">Vehicle settings menu</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Deactivation Result</label>
+                            <div class="editable-field badge badge-orange" data-field="deactivationResult">PASS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Summary -->
+            <section class="card card-shadow card-blue mt-8">
+                <div class="card-header">
+                    <h3 class="text-white mb-0">TEST SUMMARY</h3>
+                </div>
+                <div class="card-body bg-blue text-white">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label class="form-label text-white">Overall Result</label>
+                            <div class="editable-field badge" style="background-color: #4CAF50; color: white;" data-field="overallResult">PASS</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-white">Test Engineer</label>
+                            <div class="editable-field text-white" data-field="testEngineer">John Smith</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-white">Test Coordinator</label>
+                            <div class="editable-field text-white" data-field="testCoordinator">Jane Doe</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-white">Department Head</label>
+                            <div class="editable-field text-white" data-field="deptHead">Dr. Michael Johnson</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Information</h3>
+                        <div class="editable-field" data-field="contactName">EVOMOTIV GmbH</div>
+                        <div class="editable-field" data-field="contactAddress">Automotive Testing Center</div>
+                        <div class="editable-field" data-field="contactPhone">+49 123 456 789</div>
+                        <div class="editable-field" data-field="contactEmail">info@evomotiv.com</div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="flex items-center justify-center">
+                        <img src="utilities/evo_logo.png" alt="Evomotiv Logo" style="width: 497px; height: 120px; background-color: white;" class="rounded">
+                    </div>
+                    <p class="mt-4">&copy; Evomotiv GmbH 2025. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="fileInput" accept=".html,.htm" style="display: none;">
+
+    <script>
+        // Application State
+        let isEditMode = false;
+        let reportData = {};
+
+        // PIN Authentication
+        const correctPin = '1234';
+        const lockScreen = document.getElementById('lockScreen');
+        const mainApp = document.getElementById('mainApp');
+        const pinInput = document.getElementById('pinInput');
+        const unlockBtn = document.getElementById('unlockBtn');
+        const pinError = document.getElementById('pinError');
+
+        function checkPin() {
+            const enteredPin = pinInput.value;
+            if (enteredPin === correctPin) {
+                lockScreen.style.display = 'none';
+                mainApp.style.display = 'block';
+                loadReportData();
+            } else {
+                pinError.style.display = 'block';
+                pinInput.value = '';
+                pinInput.style.borderColor = 'var(--color-error)';
+            }
+        }
+
+        unlockBtn.addEventListener('click', checkPin);
+        pinInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPin();
+            pinError.style.display = 'none';
+            pinInput.style.borderColor = '';
+        });
+
+        // Lock System
+        document.getElementById('lockBtn').addEventListener('click', () => {
+            saveReportData();
+            lockScreen.style.display = 'flex';
+            mainApp.style.display = 'none';
+            pinInput.value = '';
+            isEditMode = false;
+            updateEditMode();
+        });
+
+        // Tab Functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Edit Mode Toggle
+        const editModeBtn = document.getElementById('editModeBtn');
+        const editModeText = document.getElementById('editModeText');
+
+        editModeBtn.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            updateEditMode();
+        });
+
+        function updateEditMode() {
+            const editableFields = document.querySelectorAll('.editable-field');
+            
+            if (isEditMode) {
+                editModeBtn.classList.remove('btn-outline');
+                editModeBtn.classList.add('btn-primary');
+                editModeText.textContent = 'DISABLE EDIT';
+                
+                editableFields.forEach(field => {
+                    field.style.cursor = 'pointer';
+                    field.style.border = '2px dashed var(--evo-orange)';
+                    field.style.padding = '8px';
+                    field.style.borderRadius = '4px';
+                    field.title = 'Click to edit';
+                });
+            } else {
+                editModeBtn.classList.remove('btn-primary');
+                editModeBtn.classList.add('btn-outline');
+                editModeText.textContent = 'ENABLE EDIT';
+                
+                editableFields.forEach(field => {
+                    field.style.cursor = 'default';
+                    field.style.border = 'none';
+                    field.style.padding = '0';
+                    field.title = '';
+                });
+            }
+        }
+
+        // Editable Fields
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('editable-field') && isEditMode) {
+                editField(e.target);
+            }
+        });
+
+        function editField(field) {
+            const currentValue = field.textContent.trim();
+            const fieldName = field.dataset.field;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentValue;
+            input.className = 'form-control';
+            input.style.width = '100%';
+            input.style.minWidth = '200px';
+
+            field.innerHTML = '';
+            field.appendChild(input);
+            input.focus();
+            input.select();
+
+            function saveEdit() {
+                const newValue = input.value.trim() || currentValue;
+                field.textContent = newValue;
+                reportData[fieldName] = newValue;
+                
+                // Restore special styling for badges
+                if (field.classList.contains('badge')) {
+                    field.style.display = 'inline-block';
+                    field.style.padding = 'var(--space-1) var(--space-2)';
+                }
+                
+                saveReportData();
+            }
+
+            input.addEventListener('blur', saveEdit);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    saveEdit();
+                }
+            });
+        }
+
+        // Import HTML File
+        document.getElementById('importBtn').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        parseImportedHTML(e.target.result);
+                        alert('HTML file imported successfully!');
+                    } catch (error) {
+                        alert('Error importing file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function parseImportedHTML(htmlContent) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            
+            // Extract data from imported HTML
+            const editableFields = doc.querySelectorAll('[data-field]');
+            editableFields.forEach(field => {
+                const fieldName = field.dataset.field;
+                const value = field.textContent.trim();
+                if (value) {
+                    reportData[fieldName] = value;
+                }
+            });
+            
+            // Update current document
+            updateDisplayFromData();
+        }
+
+        // Export Report
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            saveReportData();
+            exportToHTML();
+        });
+
+        function exportToHTML() {
+            const reportHtml = document.documentElement.outerHTML;
+            const blob = new Blob([reportHtml], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `FMVSS111_Report_${reportData.reportId || 'Export'}_${new Date().toISOString().split('T')[0]}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Data Management
+        function loadReportData() {
+            const saved = localStorage.getItem('fmvss111_report_data');
+            if (saved) {
+                reportData = JSON.parse(saved);
+                updateDisplayFromData();
+            }
+        }
+
+        function saveReportData() {
+            // Collect current data from all editable fields
+            const editableFields = document.querySelectorAll('.editable-field');
+            editableFields.forEach(field => {
+                const fieldName = field.dataset.field;
+                const value = field.textContent.trim();
+                if (fieldName && value) {
+                    reportData[fieldName] = value;
+                }
+            });
+            
+            localStorage.setItem('fmvss111_report_data', JSON.stringify(reportData));
+        }
+
+        function updateDisplayFromData() {
+            Object.keys(reportData).forEach(fieldName => {
+                const field = document.querySelector(`[data-field="${fieldName}"]`);
+                if (field) {
+                    field.textContent = reportData[fieldName];
+                }
+            });
+        }
+
+        // Initialize
+        updateEditMode();
+        
+        // Auto-save every 30 seconds when in edit mode
+        setInterval(() => {
+            if (isEditMode && document.getElementById('mainApp').style.display !== 'none') {
+                saveReportData();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
