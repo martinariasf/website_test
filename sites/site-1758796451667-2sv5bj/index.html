@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FMVSS 111 Test Report Generator</title>
+  <link rel="stylesheet" href="../utilities/evo_styles.css">
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <!-- PIN Entry Modal -->
+  <div id="pinModal" class="modal active">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-orange">ACCESS REQUIRED</h2>
+      </div>
+      <div class="modal-body text-center">
+        <p class="mb-6">Enter PIN to access FMVSS 111 Test Report Generator</p>
+        <div class="form-group">
+          <input type="password" id="pinInput" class="form-control text-center" placeholder="Enter PIN" maxlength="4" autocomplete="off">
+        </div>
+        <div id="pinError" class="form-error" style="display: none;">Invalid PIN. Please try again.</div>
+        <button id="submitPin" class="btn btn-primary btn-lg mt-4">ACCESS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <div class="navbar-brand">FMVSS 111 Reporter</div>
+        <div class="flex items-center gap-4">
+          <div id="editModeToggle" class="btn btn-outline btn-sm" style="display: none;">Enable Edit Mode</div>
+          <div id="saveReport" class="btn btn-primary btn-sm" style="display: none;">Save Report</div>
+          <div id="exportReport" class="btn btn-secondary btn-sm" style="display: none;">Export HTML</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="container" style="display: none;">
+    <!-- File Import Section -->
+    <section class="section section-gray">
+      <div class="text-center mb-8">
+        <h1>FMVSS 111 Test Report Generator</h1>
+        <p class="lead">Import HTML template and add test information</p>
+      </div>
+      
+      <div class="card card-shadow max-w-lg mx-auto">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="fileInput" class="form-label">Import HTML Template</label>
+            <input type="file" id="fileInput" class="form-control" accept=".html,.htm" required>
+            <div class="form-text">Select an HTML template file to begin</div>
+          </div>
+          <button id="loadTemplate" class="btn btn-primary btn-lg w-full" disabled>Load Template</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report Content Area -->
+    <section id="reportSection" class="section" style="display: none;">
+      <div class="card card-bordered">
+        <div class="card-header flex justify-between items-center">
+          <h2 class="text-blue mb-0">Test Report Content</h2>
+          <div class="badge badge-gray" id="editModeStatus">View Mode</div>
+        </div>
+        <div class="card-body">
+          <!-- Report content will be dynamically loaded here -->
+          <div id="reportContent">
+            <div class="text-center py-8">
+              <p class="text-gray">No template loaded yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Test Data Form -->
+    <section id="testDataSection" class="section section-light" style="display: none;">
+      <div class="container">
+        <h2 class="text-center mb-8 text-blue">Test Data Entry</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Vehicle Information -->
+          <div class="card card-shadow">
+            <div class="card-header">
+              <h3 class="text-orange mb-0">Vehicle Information</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="vehicleModel" class="form-label">Vehicle Model</label>
+                <input type="text" id="vehicleModel" class="form-control editable" data-field="vehicle_model" readonly>
+              </div>
+              <div class="form-group">
+                <label for="modelYear" class="form-label">Model Year</label>
+                <input type="number" id="modelYear" class="form-control editable" data-field="model_year" readonly>
+              </div>
+              <div class="form-group">
+                <label for="vinNumber" class="form-label">VIN Number</label>
+                <input type="text" id="vinNumber" class="form-control editable" data-field="vin_number" readonly>
+              </div>
+              <div class="form-group">
+                <label for="licensePlate" class="form-label">License Plate</label>
+                <input type="text" id="licensePlate" class="form-control editable" data-field="license_plate" readonly>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Information -->
+          <div class="card card-shadow">
+            <div class="card-header">
+              <h3 class="text-orange mb-0">Test Information</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="testDate" class="form-label">Test Date</label>
+                <input type="date" id="testDate" class="form-control editable" data-field="test_date" readonly>
+              </div>
+              <div class="form-group">
+                <label for="testEngineer" class="form-label">Test Engineer</label>
+                <input type="text" id="testEngineer" class="form-control editable" data-field="test_engineer" readonly>
+              </div>
+              <div class="form-group">
+                <label for="testInstitute" class="form-label">Test Institute</label>
+                <input type="text" id="testInstitute" class="form-control editable" data-field="test_institute" readonly>
+              </div>
+              <div class="form-group">
+                <label for="reportNumber" class="form-label">Report Number</label>
+                <input type="text" id="reportNumber" class="form-control editable" data-field="report_number" readonly>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Results -->
+          <div class="card card-shadow">
+            <div class="card-header">
+              <h3 class="text-orange mb-0">Test Results</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="fieldOfView" class="form-label">Field of View Test</label>
+                <select id="fieldOfView" class="form-control editable" data-field="field_of_view_result" disabled>
+                  <option value="">Select Result</option>
+                  <option value="PASS">PASS</option>
+                  <option value="FAIL">FAIL</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="imageSize" class="form-label">Test Object Image Size</label>
+                <select id="imageSize" class="form-control editable" data-field="image_size_result" disabled>
+                  <option value="">Select Result</option>
+                  <option value="PASS">PASS</option>
+                  <option value="FAIL">FAIL</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="responseTime" class="form-label">Response Time (seconds)</label>
+                <input type="number" id="responseTime" class="form-control editable" data-field="response_time" step="0.1" readonly>
+              </div>
+              <div class="form-group">
+                <label for="overallResult" class="form-label">Overall Result</label>
+                <select id="overallResult" class="form-control editable" data-field="overall_result" disabled>
+                  <option value="">Select Result</option>
+                  <option value="PASS">PASS</option>
+                  <option value="FAIL">FAIL</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments -->
+          <div class="card card-shadow">
+            <div class="card-header">
+              <h3 class="text-orange mb-0">Additional Information</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="testComments" class="form-label">Test Comments</label>
+                <textarea id="testComments" class="form-control editable" data-field="test_comments" rows="4" readonly></textarea>
+              </div>
+              <div class="form-group">
+                <label for="equipmentUsed" class="form-label">Equipment Used</label>
+                <textarea id="equipmentUsed" class="form-control editable" data-field="equipment_used" rows="3" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+          <img src="../utilities/evo_logo.png" width="248" height="60" alt="Evomotiv GmbH logo" class="opacity-75">
+          <p class="text-sm opacity-75">© Evomotiv GmbH 2025</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
