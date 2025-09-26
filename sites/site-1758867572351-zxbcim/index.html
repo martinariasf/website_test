@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Project Hours Tracker</title>
+  <link rel="stylesheet" href="../utilities/evo_styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <a href="#" class="navbar-brand">EVO Tracker</a>
+        <nav class="navbar-menu">
+          <a href="#" class="navbar-link active">Dashboard</a>
+          <a href="#" class="navbar-link">Reports</a>
+          <a href="#" class="navbar-link">Settings</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section-sm">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="mb-0">Project Hours Tracker</h1>
+        <button class="btn btn-primary" id="addProjectBtn">
+          + New Project
+        </button>
+      </div>
+
+      <!-- Projects Container -->
+      <div id="projectsContainer" class="grid grid-cols-1 gap-6">
+        <!-- Projects will be dynamically inserted here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Project Form -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle" class="modal-title">Add New Project</h3>
+        <button id="closeModal" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="projectForm">
+          <div class="form-group">
+            <label class="form-label" for="projectName">Project Name</label>
+            <input type="text" id="projectName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="projectClient">Client</label>
+            <input type="text" id="projectClient" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="projectDescription">Description</label>
+            <textarea id="projectDescription" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hourlyRate">Hourly Rate (€)</label>
+            <input type="number" id="hourlyRate" class="form-control" step="0.01" min="0">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" id="cancelModal">Cancel</button>
+        <button type="submit" form="projectForm" class="btn btn-primary" id="saveProject">Save Project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Time Entry -->
+  <div id="timeModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Log Time Entry</h3>
+        <button id="closeTimeModal" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="timeForm">
+          <div class="form-group">
+            <label class="form-label" for="taskDescription">Task Description</label>
+            <input type="text" id="taskDescription" class="form-control" required>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label" for="entryDate">Date</label>
+              <input type="date" id="entryDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hoursWorked">Hours</label>
+              <input type="number" id="hoursWorked" class="form-control" step="0.25" min="0.25" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="entryNotes">Notes (optional)</label>
+            <textarea id="entryNotes" class="form-control" rows="2"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" id="cancelTimeModal">Cancel</button>
+        <button type="submit" form="timeForm" class="btn btn-primary">Log Time</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <img src="../utilities/evo_logo.png" width="248" height="60" alt="Evomotiv GmbH logo">
+        <p class="mt-2">© Evomotiv GmbH 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
