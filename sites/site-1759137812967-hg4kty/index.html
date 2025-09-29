@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML to Excel Table Converter</title>
+  <link rel="stylesheet" href="../utilities/evo_styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <span class="navbar-brand">HTML to Excel Table Converter</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="grid grid-cols-1">
+      <div class="card card-shadow">
+        <div class="card-header">
+          <h2>Upload HTML File</h2>
+          <p class="lead">Upload an HTML file to extract vehicle and test information</p>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="htmlFile" class="form-label">Select HTML File</label>
+            <input type="file" id="htmlFile" class="form-control" accept=".html,.htm,.xml" required>
+            <div class="form-text">Supports HTML files with VDX3 XML schema</div>
+          </div>
+          <button id="processBtn" class="btn btn-primary" disabled>Process File</button>
+        </div>
+      </div>
+
+      <div id="resultsSection" class="card card-shadow" style="display: none;">
+        <div class="card-header">
+          <h2>Extracted Data</h2>
+          <p class="lead">Copy the table below and paste directly into Excel</p>
+          <button id="copyBtn" class="btn btn-outline">Copy to Clipboard</button>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-info">
+            <strong>Instructions:</strong> Select all text in the table below and copy (Ctrl+C), then paste (Ctrl+V) into Excel.
+          </div>
+          
+          <div id="tableOutput" class="border p-4 bg-light" style="font-family: monospace; white-space: pre-wrap; user-select: all;"></div>
+        </div>
+      </div>
+
+      <div id="errorSection" class="alert alert-error" style="display: none;">
+        <strong>Error:</strong> <span id="errorMessage"></span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <img src="../utilities/evo_logo.png" width="248" height="60" alt="Evomotiv GmbH logo" class="mb-4">
+        <p>© Evomotiv GmbH 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
