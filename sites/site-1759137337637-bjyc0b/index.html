@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>XML to Vehicle Test Data Table Converter</title>
+  <link rel="stylesheet" href="../utilities/evo_styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-container">
+      <div class="navbar-brand">VDX3 Vehicle Data Extractor</div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="hero-subtitle text-center mb-8">
+      <h1>XML Vehicle Test Data Converter</h1>
+      <p class="lead">Upload your VDX3 XML file to extract vehicle and test information into a copyable table format</p>
+    </div>
+
+    <div class="card card-shadow">
+      <div class="card-header">
+        <h2 class="text-2xl mb-0">Upload XML File</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="xmlFile" class="form-label">Select VDX3 XML File</label>
+          <input type="file" id="xmlFile" class="form-control" accept=".xml,.txt" required>
+          <div class="form-text">Select an XML file containing VDX3 vehicle test data</div>
+        </div>
+        <button type="button" id="processBtn" class="btn btn-primary" disabled>
+          Process XML File
+        </button>
+      </div>
+    </div>
+
+    <div id="errorSection" class="alert alert-error" style="display: none;">
+      <h3>Error Processing File</h3>
+      <p id="errorMessage"></p>
+    </div>
+
+    <div id="resultsSection" class="card card-shadow mt-8" style="display: none;">
+      <div class="card-header">
+        <h2 class="text-2xl mb-0">Extracted Vehicle & Test Information</h2>
+        <button type="button" id="copyBtn" class="btn btn-outline btn-sm">Copy Table</button>
+      </div>
+      <div class="card-body">
+        <div class="alert alert-info mb-6">
+          <strong>Instructions:</strong> The table below is formatted for easy copy-paste into Excel. 
+          Click "Copy Table" or select all table content and copy (Ctrl+C / Cmd+C).
+        </div>
+        
+        <div id="tableContainer" class="overflow-auto">
+          <table id="dataTable" class="table table-bordered" style="font-family: monospace; font-size: 12px;">
+            <tbody id="tableBody">
+              <!-- Data will be populated here -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="mt-6">
+          <h3>Raw XML Preview</h3>
+          <textarea id="xmlPreview" class="form-control" rows="10" readonly placeholder="XML content will appear here..."></textarea>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <img src="../utilities/evo_logo.png" width="248" height="60" alt="Evomotiv GmbH logo" class="mb-4">
+        <p>© Evomotiv GmbH 2025</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="script.js" defer></script>
+</body>
+</html>
