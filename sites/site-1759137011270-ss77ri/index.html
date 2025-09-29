@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML Data Extractor</title>
+  <link rel="stylesheet" href="../utilities/evo_styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <header class="navbar">
+    <div class="container navbar-container">
+      <div class="navbar-brand">HTML Data Extractor</div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="section">
+      <div class="grid-cols-1">
+        <div class="card card-shadow">
+          <div class="card-header">
+            <h2 class="mb-0">HTML File Upload</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="htmlFile" class="form-label">Select HTML File</label>
+              <input type="file" id="htmlFile" class="form-control" accept=".html,.htm" aria-describedby="fileHelp">
+              <div id="fileHelp" class="form-text">Upload an HTML file to extract vehicle and test information</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="htmlInput" class="form-label">Or Paste HTML Content</label>
+              <textarea id="htmlInput" class="form-control" rows="10" placeholder="Paste your HTML content here..."></textarea>
+            </div>
+            
+            <button id="processBtn" class="btn btn-primary">Process HTML</button>
+            <button id="clearBtn" class="btn btn-outline">Clear All</button>
+          </div>
+        </div>
+        
+        <div id="outputSection" class="card card-shadow mt-8" style="display: none;">
+          <div class="card-header">
+            <h3 class="mb-0">Extracted Data</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <button id="copyBtn" class="btn btn-secondary">Copy Table to Clipboard</button>
+              <span id="copyStatus" class="ml-4 text-success" style="display: none;">Copied successfully!</span>
+            </div>
+            
+            <div id="tableContainer" class="overflow-auto">
+              <table id="dataTable" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Field</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="alert alert-info mt-4">
+              <strong>Instructions:</strong> Click "Copy Table to Clipboard" to copy the table data, then paste directly into Excel. The table will maintain proper formatting for Excel import.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <img src="../utilities/evo_logo.png" width="248" height="60" alt="Evomotiv GmbH logo">
+        <p class="mt-2">© Evomotiv GmbH 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
