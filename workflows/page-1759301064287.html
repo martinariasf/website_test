@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go2Rental Cold Email Outreach with Website Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2C5530 0%, #4A7C59 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        input[type="email"],
+        input[type="url"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        input[type="email"]:focus,
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #4A7C59;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #2C5530 0%, #4A7C59 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 124, 89, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4A7C59;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .result h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .result-details {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .result-details pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature h4 {
+            color: #2C5530;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .form-section,
+            .info-section {
+                padding: 30px 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Go2Rental</h1>
+            <p>Cold Email Outreach with AI-Powered Website Research</p>
+        </div>
+
+        <div class="form-section">
+            <form id="outreachForm">
+                <div class="form-group">
+                    <label for="email">Target Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter the prospect's email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Company Website</label>
+                    <input type="url" id="website" name="website" required placeholder="https://example.com">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Generate & Send Personalized Email
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Researching website and generating personalized email...</p>
+            </div>
+
+            <div class="result" id="result"></div>
+        </div>
+
+        <div class="info-section">
+            <h3>How It Works</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>🔍 Website Analysis</h4>
+                    <p>Our AI analyzes the target company's website to understand their business model and identify opportunities.</p>
+                </div>
+                <div class="feature">
+                    <h4>🎯 Personalization</h4>
+                    <p>Creates highly personalized cold emails based on specific company insights and pain points.</p>
+                </div>
+                <div class="feature">
+                    <h4>📧 Automated Sending</h4>
+                    <p>Automatically sends the personalized email from your Go2Rental account.</p>
+                </div>
+                <div class="feature">
+                    <h4>📊 Smart Insights</h4>
+                    <p>Provides detailed research insights for follow-up conversations and relationship building.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('outreachForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const website = document.getElementById('website').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            
+            // Reset previous results
+            result.style.display = 'none';
+            result.className = 'result';
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            loading.style.display = 'block';
+            
+            try {
+                const response = await fetch('https://martinariasfornara.app.n8n.cloud/webhook/go2rental-outreach', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        website: website
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Hide loading
+                loading.style.display = 'none';
+                
+                if (data.status === 'success') {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <h3>✅ Email Sent Successfully!</h3>
+                        <p>A personalized email has been sent to <strong>${email}</strong></p>
+                        
+                        <div class="result-details">
+                            <h4>Research Insights:</h4>
+                            <p><strong>Company:</strong> ${data.research_insights.company_name || 'Not specified'}</p>
+                            <p><strong>Business Type:</strong> ${data.research_insights.business_type || 'Not specified'}</p>
+                            <p><strong>Location:</strong> ${data.research_insights.location || 'Not specified'}</p>
+                            
+                            <h4>Email Details:</h4>
+                            <p><strong>Subject:</strong> ${data.email_details.subject}</p>
+                            <p><strong>Personalization Points:</strong></p>
+                            <ul>
+                                ${data.research_insights.personalization_points ? 
+                                    data.research_insights.personalization_points.map(point => `<li>${point}</li>`).join('') : 
+                                    '<li>General Go2Rental services</li>'
+                                }
+                            </ul>
+                        </div>
+                    `;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>❌ Error</h3>
+                        <p>${data.message}</p>
+                        <div class="result-details">
+                            <p><strong>Target Email:</strong> ${email}</p>
+                            <p><strong>Target Website:</strong> ${website}</p>
+                            <p><strong>Error Details:</strong> ${data.error || 'Unknown error occurred'}</p>
+                        </div>
+                    `;
+                }
+                
+                result.style.display = 'block';
+                
+            } catch (error) {
+                // Hide loading
+                loading.style.display = 'none';
+                
+                result.className = 'result error';
+                result.innerHTML = `
+                    <h3>❌ Network Error</h3>
+                    <p>Failed to connect to the outreach service. Please check your internet connection and try again.</p>
+                    <div class="result-details">
+                        <p><strong>Error:</strong> ${error.message}</p>
+                    </div>
+                `;
+                result.style.display = 'block';
+            }
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Generate & Send Personalized Email';
+        });
+    </script>
+</body>
+</html>
